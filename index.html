@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Love You</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            flex-direction: column;
+            background: pink;
+            position: relative;
+            overflow: hidden;
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            display: flex;
+            flex-wrap: wrap;
+            opacity: 0.3;
+        }
+        .background img {
+            width: 33%;
+            height: auto;
+            object-fit: cover;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 20px;
+            border: none;
+            background: red;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: darkred;
+        }
+        #message {
+            display: none;
+            font-size: 50px;
+            color: white;
+            margin-top: 20px;
+            text-align: center;
+        }
+        #additionalMessage {
+            display: none;
+            font-size: 16px;
+            color: white;
+            margin-top: 10px;
+            text-align: center;
+            max-width: 80%;
+        }
+        #videoContainer {
+            display: none;
+            margin-top: 20px;
+        }
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 24px;
+            animation: fall 3s linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-10vh); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <img src="https://i.postimg.cc/nrnndSmS/Screenshot-2025-01-11-215027.png" alt="Image 1">
+        <img src="https://i.postimg.cc/DwRnVwsX/Screenshot-2024-12-26-233149.png" alt="Image 2">
+        <img src="https://i.postimg.cc/5NRMv2sR/Screenshot-2025-01-02-011436.png" alt="Image 3">
+        <img src="https://i.postimg.cc/vmWRpLbJ/Screenshot-2024-12-26-233208.png" alt="Image 4">
+        <img src="https://i.postimg.cc/xTqw0S9y/Screenshot-2024-12-24-182719.png" alt="Image 5">
+        <img src="https://i.postimg.cc/vZVCVLg4/Screenshot-2024-12-24-180956.png" alt="Image 6">
+    </div>
+    <button onclick="showLove()">Click Me</button>
+    <div id="message">I LOVE YOU ❤️</div>
+    <div id="additionalMessage">Okay Cheshta, I love u bht jada. U are bht jada pretty or bht baari tareef kr chuka hu main tab bhi nahi thkta but yeah u are perfect. That handwritten sorry note was so cute and haan the personal VCs to u are too cute mtlb I can't even explain. Almost 2 months jab se jaan rahe hai ek dusre ko and 31st u accepted the proposal, that is cute. I mean hehe I love u more. Galti English maaf krna, baaki I love u. Bye babe ❤️</div>
+    <audio id="loveSong" preload="auto">
+        <source src="https://www.dropbox.com/scl/fi/rbk2wc4eug7cnsg9euw5v/spotifydown.com-Perfect-Ed-Sheeran.mp3?rlkey=dkoxlupl26jokh6s7svi36pak&st=bf27ccck&dl=1" type="audio/mpeg">
+    </audio>
+    <div id="videoContainer">
+        <iframe id="videoPlayer" width="720" height="480" src="https://www.dropbox.com/scl/fi/xafvhovblbzbx4orvuq4w/0202-1.mp4?rlkey=9vi6omp4er795s74td3p6tf7c&st=sxzcq38v&raw=1" frameborder="0" allowfullscreen></iframe>
+    </div>
+    
+    <script>
+        let clickCount = 0;
+        function showLove() {
+            clickCount++;
+            document.getElementById('message').style.display = 'block';
+            document.getElementById('additionalMessage').style.display = 'block';
+            let song = document.getElementById('loveSong');
+            song.play().catch(error => console.log("Playback failed: ", error));
+            
+            if (clickCount === 1) {
+                createHeartShower();
+            }
+            
+            if (clickCount === 2) {
+                document.getElementById('videoContainer').style.display = 'block';
+            }
+        }
+        
+        function createHeartShower() {
+            for (let i = 0; i < 30; i++) {
+                let heart = document.createElement("div");
+                heart.innerHTML = "❤️";
+                heart.classList.add("heart");
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = (Math.random() * 2 + 1) + "s";
+                document.body.appendChild(heart);
+                setTimeout(() => { heart.remove(); }, 3000);
+            }
+        }
+    </script>
+</body>
+</html>
